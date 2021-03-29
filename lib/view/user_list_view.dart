@@ -13,14 +13,14 @@ class UserListView extends Ui with UserListViewComponents{
       title: "Flutter MVC Sample",
       body: GetX<UserListController>(
         init: UserListController(),
-        builder: (presenter)=>presenter.isUsersLoaded?(
-            presenter.isErrorExist?getErrorScreen(errorTitle: "Kullanıcılar Yüklenemedi...", errorMessage: "İnternet bağlantınızı kontrol edin.")
+        builder: (controller)=>controller.isUsersLoaded?(
+            controller.isErrorExist?getErrorScreen(errorTitle: "Kullanıcılar Yüklenemedi...", errorMessage: "İnternet bağlantınızı kontrol edin.")
                 :
             getPageElementsWidget(
                 pageElements: List<Widget>.generate(
-                    presenter.users.length,
-                        (i) => getUserBox(user: presenter.users[i],
-                        onPressed: ()=>Navigator.pushNamed(context, "userDetailView", arguments: presenter.users[i])
+                    controller.users.length,
+                        (i) => getUserBox(user: controller.users[i],
+                        onPressed: ()=>Navigator.pushNamed(context, "userDetailView", arguments: controller.users[i])
                     )
                 )
             )
